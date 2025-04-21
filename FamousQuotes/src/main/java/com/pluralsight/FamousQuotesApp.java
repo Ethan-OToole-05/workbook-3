@@ -13,31 +13,36 @@ public class FamousQuotesApp {
         while (run) {
             System.out.println("If you want a random quote input 11");
             System.out.print("Please input a number from 1-10 please: ");
-            index = input.nextInt();
-            if (index == 11) {
-                index = (int) (Math.random() * 10 + 1);
-            }
-            for(String quote : quotes) {
-                if(quote.equals(quotes[index])) {
-                    System.out.println(quotes[index]);
-                    break;
+            try {
+                index = input.nextInt();
+                if (index == 11) {
+                    index = (int) (Math.random() * 10 + 1);
+                }
+                for(String quote : quotes) {
+                    if(quote.equals(quotes[index])) {
+                        System.out.println(quotes[index]);
+                        break;
+                    }
+                    else {
+                        continue;
+                    }
+                }
+
+                clear = input.nextLine();
+                System.out.print("Would you like another quote? (Y/N) ");
+                runOption = input.nextLine().trim().toUpperCase();
+                if(runOption.charAt(0) == 'Y') {
+                    run = true;
                 }
                 else {
-                    continue;
+                    run = false;
                 }
+            } catch (Exception e) {
+                System.out.println("Invalid input please try again.");
+                System.out.println(e.getMessage());
             }
 
-            clear = input.nextLine();
-            System.out.print("Would you like another quote? (Y/N) ");
-            runOption = input.nextLine().trim().toUpperCase();
-            if(runOption.charAt(0) == 'Y') {
-                run = true;
-            }
-            else {
-                run = false;
-            }
-            System.out.println("Thank you for using the quote app!");
         }
-
+        System.out.println("Thank you for using the quote app!");
     }
 }
