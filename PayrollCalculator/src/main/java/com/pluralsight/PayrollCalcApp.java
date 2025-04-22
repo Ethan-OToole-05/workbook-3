@@ -5,7 +5,7 @@ public class PayrollCalcApp {
     public static void main(String[] args) {
         try {
             //Initialize our array, variable, file reader, and our buffered reader.
-            FileReader file = new FileReader("employees.csv");
+            FileReader file = new FileReader("src/main/resources/employees.csv");
             BufferedReader reader = new BufferedReader(file);
             Employee[] employees = new Employee[10];
             Employee employee = new Employee();

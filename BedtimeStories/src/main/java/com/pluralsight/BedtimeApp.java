@@ -9,7 +9,7 @@ public class BedtimeApp {
             //Initialize our variables and print our welcome message with a prompt.
             Scanner userInput = new Scanner(System.in);
             int userOption = 0, counter = 0;
-            System.out.println("Welcome to the bedtime application! Please pick a bedtime story.");
+            System.out.println("Welcome to the bedtime ap plication! Please pick a bedtime story.");
             System.out.print("(1) Goldilocks, (2) Hansel and Gretel, (3) Mary had a little lamb: ");
             userOption = userInput.nextInt();
 
