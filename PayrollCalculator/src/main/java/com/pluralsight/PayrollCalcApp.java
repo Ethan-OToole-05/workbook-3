@@ -6,12 +6,25 @@ public class PayrollCalcApp {
     public static void main(String[] args) {
         try {
             //Initialize our array, variable, file reader, and our buffered reader.
-            FileReader file = new FileReader("src/main/resources/employees.csv");
+
+            /*FileReader file = new FileReader("src/main/resources/employees.csv");
             BufferedReader reader = new BufferedReader(file);
             Employee[] employees = new Employee[10];
             Employee employee = new Employee();
+
+             */
+
+            //Initialize our file writer and buffered writer.
+            FileWriter fileWriter = new FileWriter("src/main/resources/");
+            BufferedWriter writer = new BufferedWriter(fileWriter);
+
+            String text;
+            for(int i = 0; i <= 15; i++) {
+                text = String.format("%d|%s|%.2f", 111, "Cameron Tay", 3277.65f);
+            }
+            writer.close();
             //Contains the entire line that will be reader by our BufferedReader object.
-            String input;
+            /*String input;
 
             while ((input = reader.readLine()) != null) {
                 //Used to skip the first line containing the id | name | ..."
@@ -20,6 +33,9 @@ public class PayrollCalcApp {
                 }
                 //Checks through each info for an employee the id name ...
                 String[] employeeInfo = input.split("\\|");
+                /*
+
+
                 for (int i = 0; i < employeeInfo.length; i++) {
                     //Send each employee into an array of employees.
                     employees[i] = employee;
@@ -31,9 +47,10 @@ public class PayrollCalcApp {
                     //Break when we are done displaying the information for each employee.
                     break;
                 }
-            }
+                */
+
             //Close the reader when we are done looking inside the employees.csv
-            reader.close();
+            //reader.close();
         } catch (IOException e) {
             System.out.println("Error reading file");
             System.out.println(e.getMessage());
