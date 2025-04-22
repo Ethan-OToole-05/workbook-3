@@ -15,12 +15,14 @@ public class PayrollCalcApp {
              */
 
             //Initialize our file writer and buffered writer.
-            FileWriter fileWriter = new FileWriter("src/main/resources/");
+            FileWriter fileWriter = new FileWriter("src/main/resources/payroll-sept-2023.csv");
             BufferedWriter writer = new BufferedWriter(fileWriter);
 
             String text;
-            for(int i = 0; i <= 15; i++) {
+            //For loop to write out text to our file below is for testing.
+            for(int i = 0; i <= 1; i++) {
                 text = String.format("%d|%s|%.2f", 111, "Cameron Tay", 3277.65f);
+                writer.write(text);
             }
             writer.close();
             //Contains the entire line that will be reader by our BufferedReader object.
