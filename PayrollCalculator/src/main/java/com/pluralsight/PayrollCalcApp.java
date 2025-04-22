@@ -11,7 +11,7 @@ public class PayrollCalcApp {
             String name;
             float hoursWorked, payRate;
             Employee[] employees = new Employee[10];
-            Employee employee;
+            Employee employee = new Employee();
 
             String input;
 
@@ -21,19 +21,18 @@ public class PayrollCalcApp {
                     continue;
                 }
                 String[] employeeInfo = input.split("\\|");
-                while(counter <= employees.length) {
+//                while(counter <= employees.length) {
                     for(int i = 0; i < employeeInfo.length; i++) {
-                        employee = new Employee();
+                        employees[i] = employee;
                         employee.setEmployeeId(Short.parseShort(employeeInfo[i]));
                         employee.setName(employeeInfo[i + 1]);
                         employee.setHoursWorked(Float.parseFloat(employeeInfo[i + 2]));
                         employee.setPayRate(Float.parseFloat(employeeInfo[i + 3]));
-                        System.out.println(employee.getEmployeeId() + employee.getName() + employee.getGrossPay(employee.getHoursWorked(), employee.getPayRate()));
-                        continue;
+                        System.out.println(employee.getEmployeeId() + " " + employee.getName() + " $" + employee.getGrossPay(employee.getHoursWorked(), employee.getPayRate()));
+                        break;
                     }
-                    counter++;
-                }
 
+//                }
             }
             reader.close();
         }catch(IOException e) {
