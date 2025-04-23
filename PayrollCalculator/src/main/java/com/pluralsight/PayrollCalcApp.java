@@ -6,14 +6,18 @@ import java.util.Scanner;
 public class PayrollCalcApp {
     public static void main(String[] args) {
         try {
-            //Initialize our array, variable, file reader, and our buffered reader.
+            //Initialize our variables below with scanner, reader, writer, employees.
             Scanner inputName = new Scanner(System.in);
             String readFileName, writeFileName;
+
+            //Welcome message to get a employee file and what payroll file to create
             System.out.println("Welcome!");
             System.out.print("Please enter the name of the file employee file to process: ");
             readFileName = inputName.nextLine();
             System.out.print("Please enter the name of the payroll file to create: ");
             writeFileName = inputName.nextLine();
+
+            //Initialize our reader to read from employee file.
             FileReader file = new FileReader("src/main/resources/" + readFileName);
             BufferedReader reader = new BufferedReader(file);
             Employee[] employees = new Employee[10];
@@ -23,7 +27,7 @@ public class PayrollCalcApp {
             //Initialize our file writer and buffered writer.
             FileWriter fileWriter = new FileWriter("src/main/resources/" + writeFileName);
             BufferedWriter writer = new BufferedWriter(fileWriter);
-
+            //This will contain the information to write to the file.
             String text;
             //For loop to write out text to our file below is for testing.
 //            for (int i = 0; i <= 1; i++) {
@@ -49,17 +53,16 @@ public class PayrollCalcApp {
                     employee.setName(employeeInfo[i + 1]);
                     employee.setHoursWorked(Float.parseFloat(employeeInfo[i + 2]));
                     employee.setPayRate(Float.parseFloat(employeeInfo[i + 3]));
+                    //Sends each info to a text file.
+
                     text = String.format("ID: " + "%d |" + " " + "Name: " + "%s |" + " Pay: $%.2f%n", employee.getEmployeeId(), employee.getName(), employee.getGrossPay(employee.getHoursWorked(), employee.getPayRate()));
                     writer.write(text);
-                    //System.out.printf("ID: " + "%d |" + " " + "Name: " + "%s |" + " Pay: $%.2f%n", employee.getEmployeeId(), employee.getName(), employee.getGrossPay(employee.getHoursWorked(), employee.getPayRate()));
+                    
                     //Break when we are done displaying the information for each employee.
                     break;
                 }
-
-
-                //Close the reader when we are done looking inside the employees.csv
-
             }
+            //Close reader and writer when we are done.
             reader.close();
             writer.close();
         }catch(IOException e){
