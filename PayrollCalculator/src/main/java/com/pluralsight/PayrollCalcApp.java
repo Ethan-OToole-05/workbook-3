@@ -55,9 +55,9 @@ public class PayrollCalcApp {
                     employee.setPayRate(Float.parseFloat(employeeInfo[i + 3]));
                     //Sends each info to a text file.
 
-                    text = String.format("ID: " + "%d |" + " " + "Name: " + "%s |" + " Pay: $%.2f%n", employee.getEmployeeId(), employee.getName(), employee.getGrossPay(employee.getHoursWorked(), employee.getPayRate()));
+                    text = String.format("%d|" + "%s|" + "$%.2f%n", employee.getEmployeeId(), employee.getName(), employee.getGrossPay(employee.getHoursWorked(), employee.getPayRate()));
                     writer.write(text);
-                    
+
                     //Break when we are done displaying the information for each employee.
                     break;
                 }
