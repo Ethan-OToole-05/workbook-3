@@ -11,12 +11,14 @@ public class StoreApp {
         ArrayList<Product> inventory = getInventory();
         while (true) {
             try {
+                //Displays user interface with options.
                 display();
                 System.out.print("Please enter a command: ");
                 String commandInput = input.nextLine();
                 int command = Integer.parseInt(commandInput);
                 switch (command) {
                     case 1:
+                        //Prints out every product in inventory.
                         Collections.sort(inventory, Comparator.comparing(Product::getName));
 
                         System.out.println("This is the following inventory available: ");
@@ -25,6 +27,7 @@ public class StoreApp {
                         }
                         break;
                     case 2:
+                        //Searches for a product by a product id number.
                         System.out.println("Please enter the product id: ");
                         String productIdInput = input.nextLine();
                         int productId = Integer.parseInt(productIdInput);
@@ -37,6 +40,7 @@ public class StoreApp {
                         }
                         break;
                     case 3:
+                        //Will print out products that are between a minimum price, and maximum price.
                         System.out.print("Please enter a number for a price range: (Minimum:Maximum): ");
                         String range = input.nextLine();
                         String[] prices = range.split(":");
@@ -50,6 +54,7 @@ public class StoreApp {
                         }
                         break;
                     case 4:
+                        //Writes a new product to the inventory. *Need to add a FileWriter feature
                         Product product;
                         System.out.print("Please enter the new product name and price (Name:Price): ");
                         String newProductInfo = input.nextLine();
@@ -63,13 +68,16 @@ public class StoreApp {
                         inventory.add(new Product(id, name, price));
                         System.out.println("Created product.");
                         break;
+                    //Any other option will stop the program.
                     default:
                         System.out.println("Thank you!");
                         System.exit(0);
                 }
+
                 clear = input.nextLine();
+                //Continue option displayed for the user.
                 System.out.print("Would you like to continue? (Y/N): ");
-                String continueOption = input.nextLine().trim().toUpperCase();
+                String continueOption = input.nextLine().toUpperCase();
                 if (continueOption.charAt(0) != 'Y') {
                     System.out.println("Thank you!");
                     System.exit(0);
@@ -105,6 +113,7 @@ public class StoreApp {
                 inventory.add(new Product(id, name, price));
 
             }
+            reader.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
