@@ -37,7 +37,7 @@ public class StoreApp {
                             }
                             break;
                     case 3:
-                        System.out.println("Please enter a number for a price range: (Minimum:Maximum): ");
+                        System.out.print("Please enter a number for a price range: (Minimum:Maximum): ");
                         String range = input.nextLine();
                         String[] prices = range.split(":");
                         float minValue, maxValue;
@@ -48,6 +48,20 @@ public class StoreApp {
                                 System.out.println("ID: " + product.getId() + " Name: " + product.getName() + " Price: $" + product.getPrice());
                             }
                         }
+                        break;
+                    case 4:
+                        Product product;
+                        System.out.print("Please enter the new product name and price (Name:Price): ");
+                        String newProductInfo = input.nextLine();
+                        String[] info = newProductInfo.split(":");
+                        int id;
+                        String name;
+                        float price;
+                        id = (int) (Math.random() * 1000) + 1;
+                        name = info[0];
+                        price = Float.parseFloat(info[1]);
+                        inventory.add(new Product(id, name, price));
+                        System.out.println("Created product.");
                         break;
 
 
