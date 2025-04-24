@@ -8,6 +8,8 @@ public class StoreApp {
     public static void main(String[] args) {
         System.out.println("Welcome!");
         Scanner input = new Scanner(System.in);
+        String clear;
+        ArrayList<Product> inventory = getInventory();
         while(true) {
             try {
                 display();
@@ -15,7 +17,6 @@ public class StoreApp {
                 int command = input.nextInt();
                 switch (command) {
                     case 1:
-                        ArrayList<Product> inventory = getInventory();
                         Collections.sort(inventory, Comparator.comparing(Product::getName));
 
                         System.out.println("This is the following inventory available: ");
@@ -23,12 +24,26 @@ public class StoreApp {
                             System.out.println("ID: " + product.getId() + " Name: " + product.getName() + " Price: $" + product.getPrice());
                         }
                         break;
+                    case 2:
+                        Product product;
+                        System.out.println("Please enter the product id: ");
+                        int productid = input.nextInt();
+                            for(Product item : inventory) {
+                                if(item.getId() == productid) {
+                                    System.out.println("ID: " + item.getId() + " Name: " + item.getName() + " Price: $" + item.getPrice());
+                                    break;
+                                }
+                                //Add a not found for future use.
+                            }
+                            break;
+
+
                     default:
                         System.out.println("Thank you!");
                         System.exit(0);
                 }
-                String clear = input.nextLine();
-                System.out.print("Would you like to continue? (Y/N):");
+                clear = input.nextLine();
+                System.out.print("Would you like to continue? (Y/N): ");
                 String continueOption = input.nextLine().trim().toUpperCase();
                 if(continueOption.charAt(0) != 'Y') {
                     System.out.println("Thank you!");
