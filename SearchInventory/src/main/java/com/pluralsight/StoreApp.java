@@ -2,7 +2,6 @@ package com.pluralsight;
 
 import java.util.ArrayList;
 import java.io.*;
-import java.util.Scanner;
 
 public class StoreApp {
     public static void main(String[] args) {
@@ -11,24 +10,33 @@ public class StoreApp {
 
         System.out.println("This is the following inventory available: ");
         for(Product product : inventory) {
-            System.out.println(product.getId() + product.getName() + product.getPrice());
+            System.out.println("ID: " + product.getId() + " Name: " + product.getName() + " Price: $" + product.getPrice());
         }
     }
     public static ArrayList<Product> getInventory(){
         ArrayList<Product> inventory = new ArrayList<Product>();
-//        try {
-//            FileWriter fileWriter = new FileWriter("src/main/resources");
-//            BufferedWriter writer = new BufferedWriter(fileWriter);
-            inventory.add(new Product(1234, "Hammer", 19.49f));
-            inventory.add(new Product(4321, "Clock", 14.99f));
-            inventory.add(new Product(1123, "Cake", 19.99f));
-            inventory.add(new Product(1334, "Computer", 199.99f));
-            inventory.add(new Product(1223, "Golf Clubs", 99.99f));
+        Product product = new Product();
+        try {
+            FileReader fileReader = new FileReader("src/main/resources/inventory.csv");
+            BufferedReader reader = new BufferedReader(fileReader);
+//            inventory.add(new Product(1234, "Hammer", 19.49f));
+//            inventory.add(new Product(4321, "Clock", 14.99f));
+//            inventory.add(new Product(1123, "Cake", 19.99f));
+//            inventory.add(new Product(1334, "Computer", 199.99f));
+//            inventory.add(new Product(1223, "Golf Clubs", 99.99f));
+            String input;
+            while((input = reader.readLine()) != null) {
+                String[] items = input.split("\\|");
+                int id = Integer.parseInt(items[0]);
+                String name = items[1];
+                float price = Float.parseFloat(items[2]);
 
-//            writer.write();
-//        }catch (IOException e) {
-//            e.printStackTrace();
-//        }
+                inventory.add(new Product(id, name, price));
+
+            }
+        }catch (IOException e) {
+            e.printStackTrace();
+        }
 
 
         return inventory;
