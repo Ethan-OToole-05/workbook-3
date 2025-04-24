@@ -10,6 +10,7 @@ import java.util.Comparator;
 public class StoreApp {
     public static void main(String[] args) {
         ArrayList<Product> inventory = getInventory();
+        Collections.sort(inventory, Comparator.comparing(Product::getName));
 
         System.out.println("This is the following inventory available: ");
         for (Product product : inventory) {
@@ -41,7 +42,7 @@ public class StoreApp {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        Collections.sort(inventory);
+
 
         return inventory;
     }
