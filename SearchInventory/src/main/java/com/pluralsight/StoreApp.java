@@ -1,21 +1,48 @@
 package com.pluralsight;
 
 import javax.naming.Name;
-import java.util.ArrayList;
+import java.util.*;
 import java.io.*;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Comparator;
 
 public class StoreApp {
     public static void main(String[] args) {
-        ArrayList<Product> inventory = getInventory();
-        Collections.sort(inventory, Comparator.comparing(Product::getName));
+        System.out.println("Welcome!");
+        Scanner input = new Scanner(System.in);
+        while(true) {
+            try {
+                display();
+                System.out.print("Please enter a command: ");
+                int command = input.nextInt();
+                switch (command) {
+                    case 1:
+                        ArrayList<Product> inventory = getInventory();
+                        Collections.sort(inventory, Comparator.comparing(Product::getName));
 
-        System.out.println("This is the following inventory available: ");
-        for (Product product : inventory) {
-            System.out.println("ID: " + product.getId() + " Name: " + product.getName() + " Price: $" + product.getPrice());
+                        System.out.println("This is the following inventory available: ");
+                        for (Product product : inventory) {
+                            System.out.println("ID: " + product.getId() + " Name: " + product.getName() + " Price: $" + product.getPrice());
+                        }
+                        break;
+                    default:
+                        System.out.println("Thank you!");
+                        System.exit(0);
+                }
+                String clear = input.nextLine();
+                System.out.print("Would you like to continue? (Y/N):");
+                String continueOption = input.nextLine().trim().toUpperCase();
+                if(continueOption.charAt(0) != 'Y') {
+                    System.out.println("Thank you!");
+                    System.exit(0);
+                }
+                else {
+                    continue;
+                }
+            } catch(Exception e) {
+                e.printStackTrace();
+            }
+            System.exit(0);
         }
+
     }
 
     public static ArrayList<Product> getInventory() {
@@ -45,5 +72,13 @@ public class StoreApp {
 
 
         return inventory;
+    }
+    public static void display() {
+        System.out.println("What do you want to do?");
+        System.out.println("1 - List all products");
+        System.out.println("2 - Lookup a product by its id");
+        System.out.println("3 - Find all products within a price range");
+        System.out.println("4 - Add a new product");
+        System.out.println("5 - Quit the application");
     }
 }
