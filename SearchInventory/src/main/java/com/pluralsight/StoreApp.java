@@ -1,6 +1,5 @@
 package com.pluralsight;
 
-import javax.naming.Name;
 import java.util.*;
 import java.io.*;
 
@@ -14,7 +13,8 @@ public class StoreApp {
             try {
                 display();
                 System.out.print("Please enter a command: ");
-                int command = input.nextInt();
+                String commandInput = input.nextLine();
+                int command = Integer.parseInt(commandInput);
                 switch (command) {
                     case 1:
                         Collections.sort(inventory, Comparator.comparing(Product::getName));
@@ -25,17 +25,30 @@ public class StoreApp {
                         }
                         break;
                     case 2:
-                        Product product;
                         System.out.println("Please enter the product id: ");
-                        int productid = input.nextInt();
-                            for(Product item : inventory) {
-                                if(item.getId() == productid) {
-                                    System.out.println("ID: " + item.getId() + " Name: " + item.getName() + " Price: $" + item.getPrice());
+                        String productIdInput = input.nextLine();
+                        int productId = Integer.parseInt(productIdInput);
+                            for(Product product : inventory) {
+                                if(product.getId() == productId) {
+                                    System.out.println("ID: " + product.getId() + " Name: " + product.getName() + " Price: $" + product.getPrice());
                                     break;
                                 }
                                 //Add a not found for future use.
                             }
                             break;
+                    case 3:
+                        System.out.println("Please enter a number for a price range: (Minimum:Maximum): ");
+                        String range = input.nextLine();
+                        String[] prices = range.split(":");
+                        float minValue, maxValue;
+                        minValue = Float.parseFloat(prices[0]);
+                        maxValue = Float.parseFloat(prices[1]);
+                        for(Product product : inventory) {
+                            if(minValue <= product.getPrice() && product.getPrice() < maxValue) {
+                                System.out.println("ID: " + product.getId() + " Name: " + product.getName() + " Price: $" + product.getPrice());
+                            }
+                        }
+                        break;
 
 
                     default:
